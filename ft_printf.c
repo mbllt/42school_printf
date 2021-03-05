@@ -35,6 +35,7 @@ int			treatment(const char *format, int i, va_list args, int nbr)
 	nbr_printed = 0;
 	i++;
 	while ((ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1) && (flag->pourcent % 2 != 0 || flag->pourcent / 2 != 0))
+	        /* si je mets || ca marche pour tous les types sauf % et si je met && c'est l'inverse  ^ */
 	{
 		treat_flags(format, args, flag, i);
 		while (ft_isdigit(format[i]) == 1 && ft_isdigit(format[i + 1]) == 1)
@@ -57,21 +58,25 @@ int			ft_printf(const char *format, ...)
 	va_list	args;
 	int		i;
 	int		nbr_printed;
+	int		a;
 
 	if (!format)
 		return (-1);
 	va_start(args, format);
 	nbr_printed = 0;
 	i = -1;
+	a = 0;
 	while (format[++i])
 	{
 		if (format[i] == '%' && format[i + 1] && nbr_printed >= 0)
 		{
+			if (format[i] == '%')
+				a++;
 			nbr_printed += treatment(format, i, args, nbr_printed);
 			while (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1)
 				i++;
 		}
-		else if (format[i] && nbr_printed >= 0)
+		else if ((format[i] && nbr_printed >= 0) || (a % 2 == 0))
 		{
 			write(1, &format[i], 1);
 			nbr_printed++;
@@ -80,7 +85,7 @@ int			ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_printed);
 }
-/*
+
 int	main(void)
 {
 	int x;
@@ -89,9 +94,9 @@ int	main(void)
 	x = 0;
 	y = 0;
 	setbuf(stdout, NULL);
-	x = ft_printf("%5.2x\n", 1234);
+	x = ft_printf("%5%\n");
 	printf("myret%d\n", x);
-	y = printf("%5.2x\n", 1234);
+	y = printf("%5%\n");
 	printf("ret%d\n", y);
 	return (0);
-}*/
+}

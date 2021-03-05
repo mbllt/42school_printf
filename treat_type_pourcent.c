@@ -26,7 +26,6 @@ int			treat_type_pourcent(t_flags *flag, int nbr_prt, char c)
 		(flag->width != 0 && !(flag_width(&str, flag, c))) ||
 		(flag->minus == 1 && flag->width != 0 && !(flag_minus(&str, 1, flag))))
 		return ((nbr_prt *= -1));
-	printf("str = %s/n", str);
 	while (str[i])
 		write(1, &str[i++], 1);
 	free(str);

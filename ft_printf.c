@@ -80,7 +80,7 @@ int			ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_printed);
 }
-
+/*
 int	main(void)
 {
 	int x;
@@ -89,9 +89,9 @@ int	main(void)
 	x = 0;
 	y = 0;
 	setbuf(stdout, NULL);
-	x = ft_printf("%20.2p\n", &x);
+	x = ft_printf("%20.19p\n", &x);
 	printf("myret%d\n", x);
-	y = printf("%20.2p\n", &x);
+	y = printf("%20.19p\n", &x);
 	printf("ret%d\n", y);
 	return (0);
-}
+}*/

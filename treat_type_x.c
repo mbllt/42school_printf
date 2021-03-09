@@ -25,7 +25,6 @@ int			treat_type_x(t_flags *flag, int nbr_printed, va_list args, char c)
 	x = va_arg(args, unsigned int);
 	str = ft_itoa_unsigned(x);
 	ft_putnbr_base(ft_atoi_ll(str), &str, "0123456789abcdef", &a);
-//	printf("str = %s\n", str);
 	if (!(str))
 		return ((nbr_printed *= -1));
 	if (str[0] == '0' && flag->nbr_dot == 0)

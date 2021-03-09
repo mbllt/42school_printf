@@ -31,7 +31,9 @@ int			treat_type(t_flags *flag, char c, va_list args)
 		nbr_printed += treat_type_u(flag, nbr_printed, args, c);
 	else if (c == 'x')
 		nbr_printed += treat_type_x(flag, nbr_printed, args, c);
-	else
+	else if (c == 'X')
 		nbr_printed += treat_type_Xcapital(flag, nbr_printed, args, c);
+	else
+		nbr_printed += treat_type_pourcent(flag, nbr_printed, c);
 	return (nbr_printed);
 }

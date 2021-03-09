@@ -21,7 +21,6 @@ void		init_flags(t_flags *flag)
 	flag->dot = 0;
 	flag->nbr_dot = -1;
 	flag->star = 0;
-	flag->pourcent = 1;
 }
 
 int			treatment(const char *format, int i, va_list args, int nbr)
@@ -34,11 +33,10 @@ int			treatment(const char *format, int i, va_list args, int nbr)
 	init_flags(flag);
 	nbr_printed = 0;
 	i++;
-	while ((ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1) && (flag->pourcent % 2 != 0 || flag->pourcent / 2 != 0))
-	        /* si je mets || ca marche pour tous les types sauf % et si je met && c'est l'inverse  ^ */
+	while (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1)
 	{
 		treat_flags(format, args, flag, i);
-		while (ft_isdigit(format[i]) == 1 && ft_isdigit(format[i + 1]) == 1)
+		while (ft_isdigit(format[i]) == 1 && ft_isdigit(format[i + 1]) == 1 )
 			i++;
 		i++;
 	}
@@ -58,25 +56,22 @@ int			ft_printf(const char *format, ...)
 	va_list	args;
 	int		i;
 	int		nbr_printed;
-	int		a;
 
 	if (!format)
 		return (-1);
 	va_start(args, format);
 	nbr_printed = 0;
 	i = -1;
-	a = 0;
 	while (format[++i])
 	{
 		if (format[i] == '%' && format[i + 1] && nbr_printed >= 0)
 		{
-			if (format[i] == '%')
-				a++;
 			nbr_printed += treatment(format, i, args, nbr_printed);
+			i++;
 			while (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1)
 				i++;
 		}
-		else if ((format[i] && nbr_printed >= 0) || (a % 2 == 0))
+		else if (format[i] && nbr_printed >= 0)
 		{
 			write(1, &format[i], 1);
 			nbr_printed++;
@@ -94,9 +89,9 @@ int	main(void)
 	x = 0;
 	y = 0;
 	setbuf(stdout, NULL);
-	x = ft_printf("%5%\n");
+	x = ft_printf("%20.2p\n", &x);
 	printf("myret%d\n", x);
-	y = printf("%5%\n");
+	y = printf("%20.2p\n", &x);
 	printf("ret%d\n", y);
 	return (0);
 }

@@ -76,6 +76,4 @@ void		treat_flags(const char *format, va_list args, t_flags *flag, int i)
 	}
 	if (format[i] == '*')
 		treat_flag_star(flag, args);
-	if (format[i] == '%')
-		flag->pourcent += 1;
 }

@@ -27,7 +27,6 @@ typedef struct	s_flags
 	int			dot;
 	int			nbr_dot;
 	int			star;
-	int			pourcent;
 }				t_flags;
 int				ft_printf(const char *format, ...);
 int				treatment(const char *format, int i, va_list args, int nbr);

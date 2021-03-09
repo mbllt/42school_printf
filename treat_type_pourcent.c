@@ -22,7 +22,7 @@ int			treat_type_pourcent(t_flags *flag, int nbr_prt, char c)
 	i = 0;
 	str[i] = '%';
 	str[i + 1] = 0;
-	if ((flag->zero == 1 || flag->nbr_dot > 0) ||
+	if ((flag->nbr_dot > 0) ||
 		(flag->width != 0 && !(flag_width(&str, flag, c))) ||
 		(flag->minus == 1 && flag->width != 0 && !(flag_minus(&str, 1, flag))))
 		return ((nbr_prt *= -1));

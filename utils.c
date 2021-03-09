@@ -14,7 +14,7 @@
 
 int		ft_isflags(char c)
 {
-	if (c == '-' || c == '0' || c == '.' || c == '*' || c == '%')
+	if (c == '-' || c == '0' || c == '.' || c == '*')
 		return (1);
 	return (0);
 }

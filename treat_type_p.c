@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-static char	*add_prefix(char **str, t_flags *flag)
+static char	*add_prefix(char **str, t_flags *flag, unsigned long long int p)
 {
 	int		i;
 	int		j;
@@ -27,7 +27,7 @@ static char	*add_prefix(char **str, t_flags *flag)
 		*str = realloc(*str, i + 3);
 		(*str)[0] = '0';
 		(*str)[1] = 'x';
-		if (flag->dot != 0 && flag->nbr_dot == 0)
+		if (flag->dot != 0 && flag->nbr_dot == 0 && p == 0)
 		{
 			(*str)[2] = 0;
 			free(temp);
@@ -57,7 +57,7 @@ int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
 	if (!(str = malloc(sizeof(char) * 13)))
 		return ((nbr_printed *= -1));
 	ft_putnbr_base(p, &str, "0123456789abcdef", &a);
-	if (!(str = add_prefix(&str, flag)))
+	if (!(str = add_prefix(&str, flag, p)))
 		return ((nbr_printed *= -1));
 	if (flag->dot != 0 && !(flag_dot(&str, flag, c)))
 		return ((nbr_printed *= -1));

@@ -6,7 +6,7 @@
 /*   By: mballet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:10:05 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/05 10:21:05 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 10:50:39 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int		ft_check_base(char *base)
 	return (0);
 }
 
-void	ft_putnbr_base(long int nbr, char **str, char *base, int *a)
+void	ft_putnbr_base(unsigned long int nbr, char **str, char *base, int *a)
 {
-	long int 		i;
-
+	unsigned long int 		i;
+	
 	i = ft_counti(base);
 	if (ft_check_base(base) != 0)
 		return ;

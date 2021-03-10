@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 14:47:45 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/05 14:09:47 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 11:40:24 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# include <limits.h>
+# include <stdint.h>
 
 typedef struct	s_flags
 {
@@ -67,7 +69,7 @@ size_t			ft_strlen(const char *s);
 void			ft_bzero(void *s, size_t n);
 char			*ft_itoa(int n);
 char			*ft_itoa_unsigned(unsigned int n);
-void			ft_putnbr_base(long int nbr, char **str, char *base, int *a);
+void			ft_putnbr_base(unsigned long int nbr, char **str, char *base, int *a);
 long long int				ft_atoi_ll(const char *str);
 
 #endif

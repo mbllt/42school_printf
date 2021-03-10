@@ -6,13 +6,13 @@
 /*   By: mballet <mballet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:47:26 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/04 16:30:18 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 11:53:08 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*add_prefix(char **str, t_flags *flag, unsigned long long int p)
+static char	*add_prefix(char **str, t_flags *flag, uintptr_t p)
 {
 	int		i;
 	int		j;
@@ -45,7 +45,7 @@ static char	*add_prefix(char **str, t_flags *flag, unsigned long long int p)
 
 int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
 {
-	unsigned long long int		p;
+	uintptr_t		p;
 	char			*str;
 	int				size_type;
 	int				i;
@@ -53,13 +53,15 @@ int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
 
 	a = 0;
 	size_type = 0;
-	p = va_arg(args, unsigned long long int);
+	p = va_arg(args, uintptr_t);
+	//printf ("p = %lu\n", p);
 	if (!(str = malloc(sizeof(char) * 13)))
 		return ((nbr_printed *= -1));
 	ft_putnbr_base(p, &str, "0123456789abcdef", &a);
-	if (!(str = add_prefix(&str, flag, p)))
-		return ((nbr_printed *= -1));
+	//printf("str = %s\n", str);
 	if (flag->dot != 0 && !(flag_dot(&str, flag, c)))
+		return ((nbr_printed *= -1));
+	if (!(str = add_prefix(&str, flag, p)))
 		return ((nbr_printed *= -1));
 	size_type = ft_strlen(str);
 	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||

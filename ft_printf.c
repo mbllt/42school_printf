@@ -6,11 +6,13 @@
 /*   By: mballet <mballet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:22:29 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/10 09:58:10 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 11:56:40 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <limits.h>
+#include <stdint.h>
 
 void		init_flags(t_flags *flag)
 {
@@ -46,7 +48,7 @@ int			treatment(const char *format, int i, va_list args, int nbr)
 		free(flag);
 		return (nbr_printed);
 	}
-	else
+	else if (!format[i])
 		free(flag);
 	return ((nbr *= -1));
 }
@@ -80,18 +82,33 @@ int			ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_printed);
 }
-/*
+
 int	main(void)
 {
+/*	int x;
+	int y;
+	uintptr_t a;
+	uintptr_t b;
+
+	x = 0;
+	y = 0;
+	a = LONG_MIN;
+	b = ULONG_MAX;
+	setbuf(stdout, NULL);
+	x = ft_printf("long min : %p, ulong max : %p\n", a, b);
+	printf("myret%d\n", x);
+	y = printf("long min : %p, ulong max : %p\n", (void*)a, (void*)b);
+	printf("ret%d\n", y);
+	return (0);*/
 	int x;
 	int y;
 
 	x = 0;
 	y = 0;
 	setbuf(stdout, NULL);
-	x = ft_printf("%0*.*d\n", 2, 1, 4);
+	x = ft_printf("%5\n");
 	printf("myret%d\n", x);
-	y = printf("%0*.*d\n", 2, 1, 4);
+	y = printf("%5\n");
 	printf("ret%d\n", y);
 	return (0);
-}*/
+}

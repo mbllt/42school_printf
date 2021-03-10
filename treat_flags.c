@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:06:11 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/04 16:29:55 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 09:58:41 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ static void	treat_flag_star(t_flags *flag, va_list args)
 	{
 		flag->nbr_dot = va_arg(args, int);
 		if (flag->nbr_dot < 0)
+		{
 			flag->dot = -1;
+			if (flag->zeroo == 1 && flag->minus == 0 && flag->nbr_dot != 0)
+				flag->zero = 1;
+		}
 	}
-	
 }
 
 void		treat_flags(const char *format, va_list args, t_flags *flag, int i)

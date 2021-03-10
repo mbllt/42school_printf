@@ -6,7 +6,7 @@
 /*   By: mballet <mballet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:22:29 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/05 14:14:08 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 09:58:10 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int	main(void)
 	x = 0;
 	y = 0;
 	setbuf(stdout, NULL);
-	x = ft_printf("%20.19p\n", &x);
+	x = ft_printf("%0*.*d\n", 2, 1, 4);
 	printf("myret%d\n", x);
-	y = printf("%20.19p\n", &x);
+	y = printf("%0*.*d\n", 2, 1, 4);
 	printf("ret%d\n", y);
 	return (0);
 }*/

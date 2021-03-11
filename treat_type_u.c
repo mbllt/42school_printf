@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:44:55 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/04 11:26:44 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 15:41:14 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			treat_type_u(t_flags *flag, int nbr_printed, va_list args, char c)
 {
-	unsigned int		u;
+	unsigned int	u;
 	char			*str;
 	int				size_type;
 	int				i;
@@ -30,9 +30,7 @@ int			treat_type_u(t_flags *flag, int nbr_printed, va_list args, char c)
 	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||
 		(flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
 		return ((nbr_printed *= -1));
-	i = -1;
-	while (str[++i])
-		write(1, &str[i], 1);
+	i = ft_write_str(&str);
 	free(str);
 	return ((nbr_printed + i));
 }

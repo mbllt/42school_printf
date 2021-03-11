@@ -63,9 +63,7 @@ int			treat_type_d(t_flags *flag, int nbr_printed, va_list args, char c)
 	if (d < 0 && ((flag->width != 0 || flag->dot != 0) ||
 		(flag->width != 0 && flag->dot != 0)))
 		type_d_neg(&str, ft_strlen(str));
-	i = -1;
-	while (str[++i])
-		write(1, &str[i], 1);
+	i = ft_write_str(&str);
 	free(str);
 	return ((nbr_printed + i));
 }

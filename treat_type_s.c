@@ -46,9 +46,7 @@ int			treat_type_s(t_flags *flag, int nbr_printed, va_list args, char c)
 	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||
 		(flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
 		return ((nbr_printed *= -1));
-	i = -1;
-	while (str[++i])
-		write(1, &str[i], 1);
+	i = ft_write_str(&str);
 	free(str);
 	return ((nbr_printed + i));
 }

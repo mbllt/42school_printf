@@ -1,57 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treat_type_i.c                                     :+:      :+:    :+:   */
+/*   treat_type_xc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 13:51:05 by mballet           #+#    #+#             */
-/*   Updated: 2021/02/23 16:40:22 by mballet          ###   ########lyon.fr   */
+/*   Created: 2021/01/21 13:46:18 by mballet           #+#    #+#             */
+/*   Updated: 2021/03/11 15:48:49 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	type_d_neg(char **str, int size)
+int			treat_type_xc(t_flags *flag, int nbr_printed, va_list args, char c)
 {
-	char	str_bis[size];
-	int		i;
-	int		a;
-	int		b;
+	unsigned int	xc;
+	char			*str;
+	int				size_type;
+	int				i;
+	int				a;
 
-	i = 0;
-	while ((*str)[i] == ' ')
-		i++;
 	a = 0;
-	if (i > 0)
-		while (a < i)
-			str_bis[a++] = (*str)[i - 1];
-	while ((*str)[i] == '0')
-		i++;
-	str_bis[a++] = (*str)[i++];
-	while (a < i)
-		str_bis[a++] = '0';
-	while ((*str)[i])
-		str_bis[a++] = (*str)[i++];
-	str_bis[i] = 0;
-	b = -1;
-	while (str_bis[++b])
-		(*str)[b] = str_bis[b];
-	(*str)[b] = 0;
-}
-
-int			treat_type_i(t_flags *flag, int nbr_printed, va_list args, char c)
-{
-	int		ii;
-	char	*str;
-	int		size_type;
-	int		i;
-
 	size_type = 0;
-	ii = va_arg(args, int);
-	if (ii < 0)
-		flag->nbr_dot++;
-	str = ft_itoa(ii);
+	xc = va_arg(args, unsigned int);
+	str = ft_itoa_unsigned(xc);
+	ft_putnbrbs(ft_atoi_ll(str), &str, "0123456789ABCDEF", &a);
+	if (!(str))
+		return ((nbr_printed *= -1));
 	if (str[0] == '0' && flag->nbr_dot == 0)
 		str[0] = 0;
 	if (flag->dot != 0 && !(flag_dot(&str, flag, c)))
@@ -60,9 +35,6 @@ int			treat_type_i(t_flags *flag, int nbr_printed, va_list args, char c)
 	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||
 		(flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
 		return ((nbr_printed *= -1));
-	if (ii < 0 && ((flag->width != 0 || flag->dot != 0) ||
-		(flag->width != 0 && flag->dot != 0)))
-		type_d_neg(&str, ft_strlen(str));
 	i = ft_write_str(&str);
 	free(str);
 	return ((nbr_printed + i));

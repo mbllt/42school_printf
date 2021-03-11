@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mballet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:10:05 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/10 10:50:39 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 15:48:20 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_counti(char *base)
+int				ft_counti(char *base)
 {
 	int i;
 
@@ -22,7 +22,7 @@ int		ft_counti(char *base)
 	return (i);
 }
 
-int		ft_check_base(char *base)
+int				ft_check_base(char *base)
 {
 	size_t	i;
 	size_t	j;
@@ -48,31 +48,32 @@ int		ft_check_base(char *base)
 	return (0);
 }
 
-void	ft_putnbr_base(unsigned long int nbr, char **str, char *base, int *a)
+void			ft_putnbrbs(unsigned long int nb, char **str, char *bs, int *a)
 {
-	unsigned long int 		i;
-	
-	i = ft_counti(base);
-	if (ft_check_base(base) != 0)
+	unsigned long int	i;
+
+	i = ft_counti(bs);
+	if (ft_check_base(bs) != 0)
 		return ;
-	if (nbr < i)
+	if (nb < i)
 	{
-		(*str)[*a] = base[nbr % i];
+		(*str)[*a] = bs[nb % i];
 		*a = *a + 1;
 	}
-	if (nbr >= i)
+	if (nb >= i)
 	{
-		ft_putnbr_base(nbr / i, str, base, a);
-		ft_putnbr_base(nbr % i, str, base, a);
+		ft_putnbrbs(nb / i, str, bs, a);
+		ft_putnbrbs(nb % i, str, bs, a);
 	}
 	(*str)[*a] = 0;
 	return ;
 }
+
 long long int	ft_atoi_ll(const char *str)
 {
-	long long int				i;
+	long long int		i;
 	long unsigned int	res;
-	long long int				neg;
+	long long int		neg;
 
 	i = 0;
 	res = 0;
@@ -94,4 +95,14 @@ long long int	ft_atoi_ll(const char *str)
 			return (res * neg);
 	}
 	return (0);
+}
+
+int				ft_write_str(char **str)
+{
+	int	i;
+
+	i = -1;
+	while ((*str)[++i])
+		write(1, &(*str)[i], 1);
+	return (i);
 }

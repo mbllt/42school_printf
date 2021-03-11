@@ -34,7 +34,6 @@ static void	treat_nbr_width_precision(const char *format, t_flags *flag, int i)
 static void	treat_flag_star(t_flags *flag, va_list args)
 {
 	flag->star += 1;
-
 	if (flag->star == 1 && flag->dot == 0)
 	{
 		flag->width = va_arg(args, int);

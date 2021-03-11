@@ -56,7 +56,8 @@ char		*flag_width(char **str, t_flags *flag, char c)
 			return (NULL);
 		a = 0;
 		while (a < (flag->width - (int)ft_strlen(str_bis)))
-			if (flag->zero == 1 || ((c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X') && (flag->zeroo == 1 && flag->nbr_dot < 0)))
+			if (flag->zero == 1 || ((c == 'd' || c == 'i' || c == 'u' ||
+			c == 'x' || c == 'X') && (flag->zeroo == 1 && flag->nbr_dot < 0)))
 				(*str)[a++] = '0';
 			else
 				(*str)[a++] = ' ';

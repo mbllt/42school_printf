@@ -53,7 +53,7 @@ int				treat_type_u(t_flags *flag, int nbr_printed,
 				va_list args, char c);
 int				treat_type_x(t_flags *flag, int nbr_printed,
 				va_list args, char c);
-int				treat_type_Xcapital(t_flags *flag, int nbr_printed,
+int				treat_type_xc(t_flags *flag, int nbr_printed,
 				va_list args, char c);
 int				treat_type_pourcent(t_flags *flag, int nbr_prt, char c);
 int				ft_isflags(char c);
@@ -69,7 +69,8 @@ size_t			ft_strlen(const char *s);
 void			ft_bzero(void *s, size_t n);
 char			*ft_itoa(int n);
 char			*ft_itoa_unsigned(unsigned int n);
-void			ft_putnbr_base(unsigned long int nbr, char **str, char *base, int *a);
+void			ft_putnbrbs(unsigned long int nbr, char **str, char *bs, int *a);
 long long int				ft_atoi_ll(const char *str);
+int				ft_write_str(char **str);
 
 #endif

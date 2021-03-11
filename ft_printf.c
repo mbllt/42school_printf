@@ -38,22 +38,14 @@ int			treatment(const char *format, int i, va_list args, int nbr)
 	while (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1)
 	{
 		treat_flags(format, args, flag, i);
-		while (ft_isdigit(format[i]) == 1 && ft_isdigit(format[i + 1]) == 1 )
+		while (ft_isdigit(format[i]) == 1 && ft_isdigit(format[i + 1]) == 1)
 			i++;
 		i++;
 	}
 	if (ft_istype(format[i]) == 1)
-	{
 		nbr_printed += treat_type(flag, format[i], args);
-		free(flag);
-		return (nbr_printed);
-	}
-	else if (!format[i])
-	{
-		free(flag);
-		return (nbr_printed);
-	}
-	return ((nbr *= -1));
+	free(flag);
+	return ((nbr_printed));
 }
 
 int			ft_printf(const char *format, ...)
@@ -62,8 +54,6 @@ int			ft_printf(const char *format, ...)
 	int		i;
 	int		nbr_printed;
 
-	if (!format)
-		return (-1);
 	va_start(args, format);
 	nbr_printed = 0;
 	i = -1;
@@ -73,7 +63,8 @@ int			ft_printf(const char *format, ...)
 		{
 			nbr_printed += treatment(format, i, args, nbr_printed);
 			i++;
-			while (format[i + 1] && (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1))
+			while (format[i + 1] && (ft_isflags(format[i]) == 1 ||
+				ft_isdigit(format[i]) == 1))
 				i++;
 		}
 		else if (format[i] && nbr_printed >= 0)
@@ -83,20 +74,5 @@ int			ft_printf(const char *format, ...)
 		}
 	}
 	va_end(args);
-	return (nbr_printed);
+	return ((!format) ? -1 : nbr_printed);
 }
-/*
-int	main(void)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	//setbuf(stdout, NULL);
-	x = ft_printf("%05");
-	printf("mine = %d\n", x);
-	y = printf("%05");
-	printf("rtrn = %d\n", y);
-	return (0);
-}*/

@@ -27,7 +27,7 @@ SRCS		= ft_printf.c\
 				treat_type_d.c\
 				treat_type_i.c\
 				treat_type_u.c\
-				treat_type_Xcapital.c\
+				treat_type_xc.c\
 				treat_type_x.c\
 				treat_type_pourcent.c\
 

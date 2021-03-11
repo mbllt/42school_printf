@@ -55,7 +55,7 @@ int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
 	size_type = 0;
 	p = va_arg(args, uintptr_t);
 	//printf ("p = %lu\n", p);
-	if (!(str = malloc(sizeof(char) * 13)))
+	if (!(str = malloc(sizeof(char) * 17)))
 		return ((nbr_printed *= -1));
 	ft_putnbr_base(p, &str, "0123456789abcdef", &a);
 	//printf("str = %s\n", str);

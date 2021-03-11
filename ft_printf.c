@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mballet <mballet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:22:29 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/10 11:56:40 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 14:49:34 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int			treatment(const char *format, int i, va_list args, int nbr)
 		return (nbr_printed);
 	}
 	else if (!format[i])
+	{
 		free(flag);
+		return (nbr_printed);
+	}
 	return ((nbr *= -1));
 }
 
@@ -70,7 +73,7 @@ int			ft_printf(const char *format, ...)
 		{
 			nbr_printed += treatment(format, i, args, nbr_printed);
 			i++;
-			while (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1)
+			while (format[i + 1] && (ft_isflags(format[i]) == 1 || ft_isdigit(format[i]) == 1))
 				i++;
 		}
 		else if (format[i] && nbr_printed >= 0)
@@ -82,33 +85,18 @@ int			ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_printed);
 }
-
+/*
 int	main(void)
 {
-/*	int x;
-	int y;
-	uintptr_t a;
-	uintptr_t b;
-
-	x = 0;
-	y = 0;
-	a = LONG_MIN;
-	b = ULONG_MAX;
-	setbuf(stdout, NULL);
-	x = ft_printf("long min : %p, ulong max : %p\n", a, b);
-	printf("myret%d\n", x);
-	y = printf("long min : %p, ulong max : %p\n", (void*)a, (void*)b);
-	printf("ret%d\n", y);
-	return (0);*/
 	int x;
 	int y;
 
 	x = 0;
 	y = 0;
-	setbuf(stdout, NULL);
-	x = ft_printf("%5\n");
-	printf("myret%d\n", x);
-	y = printf("%5\n");
-	printf("ret%d\n", y);
+	//setbuf(stdout, NULL);
+	x = ft_printf("%05");
+	printf("mine = %d\n", x);
+	y = printf("%05");
+	printf("rtrn = %d\n", y);
 	return (0);
-}
+}*/

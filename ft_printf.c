@@ -74,5 +74,5 @@ int			ft_printf(const char *format, ...)
 		}
 	}
 	va_end(args);
-	return ((!format) ? -1 : nbr_printed);
+	return (nbr_printed);
 }

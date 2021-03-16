@@ -20,7 +20,8 @@ static char	*add_prefix(char **str, t_flags *flag, uintptr_t p, int i)
 	temp = ft_strdup(*str);
 	if (*str)
 	{
-		*str = realloc(*str, i + 3);
+		if (!(*str = realloc(*str, i + 3)))
+			return (NULL);
 		(*str)[0] = '0';
 		(*str)[1] = 'x';
 		if (flag->dot != 0 && flag->nbr_dot == 0 && p == 0)
@@ -36,7 +37,7 @@ static char	*add_prefix(char **str, t_flags *flag, uintptr_t p, int i)
 		(*str)[j] = 0;
 		free(temp);
 	}
-	return ((*str) ? *str : NULL);
+	return (*str);
 }
 
 int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)

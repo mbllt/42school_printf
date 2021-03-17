@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:47:26 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/11 15:48:59 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:35:30 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static char	*add_prefix(char **str, t_flags *flag, uintptr_t p, int i)
 	temp = ft_strdup(*str);
 	if (*str)
 	{
-		if (!(*str = realloc(*str, i + 3)))
+		(*str) = realloc(*str, i + 3);
+		if (!(*str))
 			return (NULL);
 		(*str)[0] = '0';
 		(*str)[1] = 'x';
@@ -40,7 +41,7 @@ static char	*add_prefix(char **str, t_flags *flag, uintptr_t p, int i)
 	return (*str);
 }
 
-int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
+int	treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
 {
 	uintptr_t		p;
 	char			*str;
@@ -49,19 +50,20 @@ int			treat_type_p(t_flags *flag, int nbr_printed, va_list args, char c)
 	int				a;
 
 	a = 0;
-	size_type = 0;
 	p = va_arg(args, uintptr_t);
-	if (!(str = malloc(sizeof(char) * 17)))
+	str = malloc(sizeof(char) * 17);
+	if (!str)
 		return ((nbr_printed *= -1));
 	ft_putnbrbs(p, &str, "0123456789abcdef", &a);
 	if (flag->dot != 0 && !(flag_dot(&str, flag, c)))
 		return ((nbr_printed *= -1));
 	size_type = ft_strlen(str);
-	if (!(str = add_prefix(&str, flag, p, size_type)))
+	str = add_prefix(&str, flag, p, size_type);
+	if (!str)
 		return ((nbr_printed *= -1));
 	size_type = ft_strlen(str);
-	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||
-		(flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
+	if ((flag->width != 0 && !(flag_width(&str, flag, c)))
+		|| (flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
 		return ((nbr_printed *= -1));
 	i = ft_write_str(&str);
 	free(str);

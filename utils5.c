@@ -6,15 +6,15 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 11:10:05 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/11 15:48:20 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:44:51 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int				ft_counti(char *base)
+int	ft_counti(char *base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (base[i] != '\0')
@@ -22,7 +22,7 @@ int				ft_counti(char *base)
 	return (i);
 }
 
-int				ft_check_base(char *base)
+int	ft_check_base(char *base)
 {
 	size_t	i;
 	size_t	j;
@@ -48,7 +48,7 @@ int				ft_check_base(char *base)
 	return (0);
 }
 
-void			ft_putnbrbs(unsigned long int nb, char **str, char *bs, int *a)
+void	ft_putnbrbs(unsigned long int nb, char **str, char *bs, int *a)
 {
 	unsigned long int	i;
 
@@ -97,7 +97,7 @@ long long int	ft_atoi_ll(const char *str)
 	return (0);
 }
 
-int				ft_write_str(char **str)
+int	ft_write_str(char **str)
 {
 	int	i;
 

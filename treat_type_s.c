@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:46:55 by mballet           #+#    #+#             */
-/*   Updated: 2021/02/23 17:29:03 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:15:54 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,29 @@ static char	*fill_in_str_null(char **str)
 	return (*str);
 }
 
-int			treat_type_s(t_flags *flag, int nbr_printed, va_list args, char c)
+int	treat_type_s(t_flags *flag, int nbr_printed, va_list args, char c)
 {
 	char	*s;
 	char	*str;
 	int		i;
 	int		size_type;
 
-	s = va_arg(args, char*);
+	s = va_arg(args, char *);
 	if (!s)
 	{
-		if (!(str = malloc(sizeof(char) * 7)))
-			return ((nbr_printed *= -1));
-		str = fill_in_str_null(&str);
+		str = malloc(sizeof(char) * 7);
+		if (str)
+			str = fill_in_str_null(&str);
 	}
-	else if (!(str = ft_strdup(s)))
+	else
+		str = ft_strdup(s);
+	if (!(str))
 		return ((nbr_printed *= -1));
 	if (flag->dot > 0 && !(flag_dot(&str, flag, c)))
 		return ((nbr_printed *= -1));
 	size_type = ft_strlen(str);
-	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||
-		(flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
+	if ((flag->width != 0 && !(flag_width(&str, flag, c)))
+		|| (flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
 		return ((nbr_printed *= -1));
 	i = ft_write_str(&str);
 	free(str);

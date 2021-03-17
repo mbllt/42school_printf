@@ -6,20 +6,20 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:44:55 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/04 12:20:11 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:43:00 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int		size_itoa(unsigned int n)
+static int	size_itoa(unsigned int n)
 {
 	if (n >= 10)
 		return (1 + (size_itoa(n / 10)));
 	return (1);
 }
 
-static char		*fill_in_str(unsigned int n, char *str, int size)
+static char	*fill_in_str(unsigned int n, char *str, int size)
 {
 	str[size] = '\0';
 	size--;
@@ -36,7 +36,7 @@ static char		*fill_in_str(unsigned int n, char *str, int size)
 	return (str);
 }
 
-char			*ft_itoa_unsigned(unsigned int n)
+char	*ft_itoa_unsigned(unsigned int n)
 {
 	char	*str;
 	int		size;

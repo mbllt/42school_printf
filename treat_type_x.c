@@ -6,13 +6,13 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:45:10 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/11 15:48:43 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:39:02 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int			treat_type_x(t_flags *flag, int nbr_printed, va_list args, char c)
+int	treat_type_x(t_flags *flag, int nbr_printed, va_list args, char c)
 {
 	unsigned int	x;
 	char			*str;
@@ -32,8 +32,8 @@ int			treat_type_x(t_flags *flag, int nbr_printed, va_list args, char c)
 	if (flag->dot != 0 && !(flag_dot(&str, flag, c)))
 		return ((nbr_printed *= -1));
 	size_type = ft_strlen(str);
-	if ((flag->width != 0 && !(flag_width(&str, flag, c))) ||
-		(flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
+	if ((flag->width != 0 && !(flag_width(&str, flag, c)))
+		|| (flag->minus == 1 && !(flag_minus(&str, size_type, flag))))
 		return ((nbr_printed *= -1));
 	i = ft_write_str(&str);
 	free(str);

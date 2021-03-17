@@ -6,13 +6,13 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:43:06 by mballet           #+#    #+#             */
-/*   Updated: 2021/02/24 10:53:16 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:42:20 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int		size_itoa(long int n)
+static int	size_itoa(long int n)
 {
 	if (n < 0)
 		return (1 + (size_itoa(n * -1)));
@@ -21,7 +21,7 @@ static int		size_itoa(long int n)
 	return (1);
 }
 
-static char		*fill_in_str(long int n, char *str, int size)
+static char	*fill_in_str(long int n, char *str, int size)
 {
 	str[size] = '\0';
 	size--;
@@ -43,7 +43,7 @@ static char		*fill_in_str(long int n, char *str, int size)
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		size;

@@ -6,7 +6,7 @@
 #    By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 14:39:52 by mballet           #+#    #+#              #
-#    Updated: 2021/03/05 14:06:57 by mballet          ###   ########lyon.fr    #
+#    Updated: 2021/03/17 16:55:48 by mballet          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRCS		= ft_printf.c\
 				treat_type_s.c\
 				treat_type_p.c\
 				treat_type_d.c\
-				treat_type_i.c\
 				treat_type_u.c\
 				treat_type_xc.c\
 				treat_type_x.c\

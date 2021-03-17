@@ -6,21 +6,29 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 13:06:11 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/10 09:58:41 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 14:52:55 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	treat_nbr_width_precision(const char *format, t_flags *flag, int i)
+static int	treat_nbr_width_precision(const char *format, t_flags *flag, int i)
 {
-	char	str[ft_strlen(format)];
+	char	*str;
+	int		a;
 	int		b;
 	int		z;
 
 	z = 0;
 	if (format[i - 1] == '.')
 		z++;
+	a = i;
+	while (ft_isdigit(format[a]) == 1)
+		a++;
+	a -= i;
+	str = malloc(sizeof(char) * a + 1);
+	if (!(str))
+		return (0);
 	b = 0;
 	while (ft_isdigit(format[i]) == 1)
 		str[b++] = format[i++];
@@ -29,6 +37,8 @@ static void	treat_nbr_width_precision(const char *format, t_flags *flag, int i)
 		flag->width = ft_atoi(str);
 	else
 		flag->nbr_dot = ft_atoi(str);
+	free(str);
+	return (1);
 }
 
 static void	treat_flag_star(t_flags *flag, va_list args)
@@ -56,7 +66,7 @@ static void	treat_flag_star(t_flags *flag, va_list args)
 	}
 }
 
-void		treat_flags(const char *format, va_list args, t_flags *flag, int i)
+int	treat_flags(const char *format, va_list args, t_flags *flag, int i)
 {
 	if (format[i] == '0' && flag->dot == 0 && flag->minus == 0)
 	{
@@ -68,7 +78,8 @@ void		treat_flags(const char *format, va_list args, t_flags *flag, int i)
 	if (format[i] == '-')
 		flag->minus = 1;
 	if (ft_isdigit(format[i]) == 1)
-		treat_nbr_width_precision(format, flag, i);
+		if (!(treat_nbr_width_precision(format, flag, i)))
+			return (0);
 	if (format[i] == '.')
 	{
 		flag->dot = 1;
@@ -78,4 +89,5 @@ void		treat_flags(const char *format, va_list args, t_flags *flag, int i)
 	}
 	if (format[i] == '*')
 		treat_flag_star(flag, args);
+	return (1);
 }

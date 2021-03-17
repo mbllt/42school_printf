@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 10:09:06 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/03 07:26:53 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 16:41:55 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int					i;
 	long unsigned int	res;
@@ -70,7 +70,8 @@ char	*ft_realloc(char *str, size_t size)
 
 	if (!str)
 		return (NULL);
-	if (!(str2 = malloc(sizeof(char) * size)))
+	(str2 = malloc(sizeof(char) * size));
+	if (!(str2))
 	{
 		free(str);
 		return (NULL);

@@ -6,13 +6,11 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 11:22:29 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/17 14:53:25 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 10:08:37 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <limits.h>
-#include <stdint.h>
 
 void	init_flags(t_flags *flag)
 {
@@ -78,9 +76,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_printed);
 }
-/*
-int	main()
-{
-	ft_printf("%.10d\n", 5);
-	printf("%.10d\n", 5);
-}*/

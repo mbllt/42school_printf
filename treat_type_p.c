@@ -6,7 +6,7 @@
 /*   By: mballet <ballet.mia.6@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 13:47:26 by mballet           #+#    #+#             */
-/*   Updated: 2021/03/17 16:35:30 by mballet          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 08:56:08 by mballet          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*add_prefix(char **str, t_flags *flag, uintptr_t p, int i)
 	temp = ft_strdup(*str);
 	if (*str)
 	{
-		(*str) = realloc(*str, i + 3);
+		(*str) = ft_realloc(*str, i + 3);
 		if (!(*str))
 			return (NULL);
 		(*str)[0] = '0';
